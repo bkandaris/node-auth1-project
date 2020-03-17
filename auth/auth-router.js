@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const Users = require('../users/users-model');
+const { sessions, restrict } = require('../middleware/restrict');
 
 const router = express.Router();
 
@@ -34,6 +35,13 @@ router.post('/login', async (req, res, next) => {
       });
     }
 
+    // const authToken = Math.random();
+    // sessions[authToken] = user.id;
+
+    // // res.setHeader("Authorization", authToken)
+    // res.setHeader('Set-Cookie', `token=${authToken}; Path=/`);
+
+    req.session.user = user;
     res.json({
       message: `Welcome ${user.username}!`
     });

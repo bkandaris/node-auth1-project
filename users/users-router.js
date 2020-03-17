@@ -1,7 +1,7 @@
 const express = require('express');
 const Users = require('./users-model');
 // import restrict()
-const restrict = require('../middleware/restrict');
+const { sessions, restrict } = require('../middleware/restrict');
 
 const router = express.Router();
 // adding restrict middleware
